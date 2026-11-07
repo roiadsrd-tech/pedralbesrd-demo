@@ -934,6 +934,7 @@ img {
   .faq-split-layout,
   .footer-cta-split {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .project-row.reverse .project-media-wrap,
@@ -975,6 +976,28 @@ img {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --gutter: 1.25rem;
+  }
+
+  /* Header & Mobile Drawer */
+  .site-navbar {
+    background-color: rgba(245, 241, 232, 0.98);
+  }
+
+  .navbar-inner {
+    height: 68px;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+  }
+
+  .brand-sub {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+  }
+
   .nav-links,
   .nav-cta-desktop {
     display: none;
@@ -982,12 +1005,79 @@ img {
 
   .mobile-menu-btn {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-arch);
+    color: var(--text-dark);
   }
 
-  .manifesto-narratives,
-  .stats-strip,
-  .service-preview-stage,
-  .footer-meta-columns,
+  .mobile-drawer {
+    border-bottom: 1px solid var(--hairline-light);
+    background-color: var(--bg-warm);
+    padding: 1.25rem var(--gutter) 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-drawer .nav-link {
+    font-size: 1.05rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--hairline-light);
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding-top: 68px;
+    min-height: auto;
+  }
+
+  .hero-top-grid {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+    gap: 2rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.35rem, 8.5vw, 3.2rem);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-lead {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.25rem;
+  }
+
+  .hero-frame {
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+  }
+
+  .hero-frame-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+  }
+
+  /* Datasheet Grid en 1 columna en móvil */
   .datasheet-grid {
     grid-template-columns: 1fr;
   }
@@ -1002,9 +1092,43 @@ img {
     border-bottom: none;
   }
 
+  .datasheet-value {
+    font-size: 0.9rem;
+  }
+
+  /* Manifesto Section */
+  .manifesto-section {
+    padding: 4rem 0;
+  }
+
+  .manifesto-quote {
+    font-size: clamp(1.65rem, 6vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+  }
+
+  .manifesto-narratives {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .manifesto-sidebar {
+    gap: 1.25rem;
+  }
+
+  .manifesto-visual-box {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Cifras / Stats */
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
   .stat-item,
   .stat-item:not(:first-child) {
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
     border-right: none;
     border-bottom: 1px solid var(--hairline-dark);
   }
@@ -1013,13 +1137,208 @@ img {
     border-bottom: none;
   }
 
+  .stat-number {
+    font-size: 2.8rem;
+  }
+
+  /* Proyectos Section */
+  .projects-section {
+    padding: 4rem 0;
+  }
+
   .section-header-split {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 7vw, 2.7rem);
+  }
+
+  .project-filter-bar {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-tab {
+    flex-shrink: 0;
+    padding: 0.6rem 1rem;
+  }
+
+  .projects-stack {
+    gap: 3.5rem;
+  }
+
+  .project-row {
+    gap: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .project-media-wrap {
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-title {
+    font-size: 1.75rem;
+  }
+
+  .project-location {
+    margin-bottom: 1.25rem;
+  }
+
+  .project-spec-list {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-spec-desc {
+    font-size: 0.9rem;
+  }
+
+  /* Footer card actions inside project row */
+  .project-info-wrap > div:last-child {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .project-info-wrap .btn-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1rem;
+  }
+
+  /* Servicios Section */
+  .services-section {
+    padding: 4rem 0;
+  }
+
+  .service-sticky-panel {
+    gap: 1.25rem;
+  }
+
+  .service-challenge-box {
+    padding: 1.25rem;
+  }
+
+  .service-sticky-panel .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .service-feature-trigger {
+    padding: 1.25rem 0;
+    grid-template-columns: 40px 1fr auto;
+  }
+
+  .service-feature-title {
+    font-size: 1.25rem;
   }
 
   .service-feature-body {
     padding-left: 0;
+  }
+
+  .service-preview-stage {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .service-preview-img {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Proceso & FAQ Section */
+  .process-section {
+    padding: 4rem 0;
+  }
+
+  .faq-split-layout {
+    gap: 2.5rem;
+  }
+
+  .faq-question-btn {
+    padding: 1.25rem 0;
+    font-size: 1.05rem;
+  }
+
+  .faq-split-layout .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .monolith-footer {
+    padding: 4rem 0 2rem;
+  }
+
+  .footer-headline {
+    font-size: clamp(2rem, 7vw, 2.7rem);
+  }
+
+  .footer-sub {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-cta-split {
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-cta-split .btn-light,
+  .footer-cta-split .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-meta-columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+  }
+
+  .mega-wordmark {
+    font-size: clamp(3.2rem, 15vw, 6rem);
+    padding: 2rem 0;
+    line-height: 1;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gutter: 1rem;
+  }
+
+  .hero-headline {
+    font-size: 2.2rem;
+  }
+
+  .stat-number {
+    font-size: 2.4rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .project-title {
+    font-size: 1.55rem;
+  }
+
+  .mega-wordmark {
+    font-size: clamp(2.8rem, 14vw, 4.2rem);
   }
 }
 
