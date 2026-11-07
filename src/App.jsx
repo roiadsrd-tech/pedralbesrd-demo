@@ -2,86 +2,165 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus, Menu, X } from 'lucide-react';
 
+const WHATSAPP_URL =
+  'https://wa.me/18094410033?text=Hola%20Constructora%20Pedralbes%2C%20vi%20su%20portafolio%20web%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20proyectos.';
 const INSTAGRAM_URL = 'https://www.instagram.com/pedralbesrd/';
-const HERO_PHOTO = './media/post_7.jpg';
+const PHONE_HREF = 'tel:+18096889945';
+const EMAIL_HREF = 'mailto:info@pedralbes.com.do';
+
+const HERO_SLIDES = [
+  {
+    photo: './media/web_3.jpg',
+    project: 'OCEANIC BY PEDRALBES',
+    meta: 'TORRE DE 27 NIVELES FRENTE AL MAR · JUAN DOLIO',
+  },
+  {
+    photo: './media/web_4.jpg',
+    project: 'INSIGNIA BY PEDRALBES',
+    meta: 'ARQ. FRANC ORTEGA · LA JULIA, SANTO DOMINGO',
+  },
+  {
+    photo: './media/web_7.jpg',
+    project: 'CASSA JUANILLO',
+    meta: '87 RESIDENCIAS DE ULTRA LUJO · CAP CANA',
+  },
+  {
+    photo: './media/web_5.jpg',
+    project: 'PARC 131 BY PEDRALBES',
+    meta: 'FRENTE AL PARQUE IBEROAMERICANO · LA ESPERILLA',
+  },
+];
 
 const STATS = [
-  { num: '3,227', label: 'publicaciones de trayectoria' },
-  { num: '73.1K', label: 'seguidores en comunidad' },
-  { num: '3', label: 'destinos principales de inversión' },
+  { num: '27', label: 'niveles frente al mar en Oceanic Juan Dolio' },
+  { num: '+18', label: 'torres y residenciales entregados con éxito' },
+  { num: '8,000 m²', label: 'de áreas sociales frente a la playa' },
+  { num: '73.1K', label: 'comunidad inmobiliaria verificada' },
 ];
 
 const PROJECTS = [
   {
     code: 'PROYECTO 01',
-    title: 'Oceanic · Juan Dolio',
-    category: 'Desarrollo Residencial de Playa',
-    location: 'Juan Dolio, República Dominicana',
+    title: 'Oceanic by Pedralbes',
+    category: 'Beachfront High-Rise · 27 Niveles',
+    location: 'Calle Camino de la Playa, Juan Dolio',
     challenge:
-      'Crear un espacio que permita desconectar del ritmo de la ciudad, integrando el mar como parte de la vida cotidiana.',
+      'Crear el complejo residencial frente al mar más lujoso y completo a solo 40 minutos de la ciudad de Santo Domingo.',
     solution:
-      'Proyecto de apartamentos con amenidades pensadas para el descanso, ubicado en una zona privilegiada de Juan Dolio con acceso directo a la playa.',
-    photo: HERO_PHOTO,
-    cropClass: 'crop-stone',
-    frameLabel: 'PIEDRA CORALINA & HORMIGÓN VISTO · LITORAL SUR',
+      'Majestuosa torre de 27 niveles en primera línea de playa con más de 8,000 m² de áreas sociales en los niveles 1 y 6, acceso directo a la playa y penthouses panorámicos en los pisos 26 y 27.',
+    photo: './media/web_10.jpg',
+    gallery: ['./media/web_10.jpg', './media/web_21.jpg', './media/web_22.jpg'],
+    frameLabel: 'PRIMERA LÍNEA DE PLAYA · 8,000 M² DE ÁREAS SOCIALES · JUAN DOLIO',
   },
   {
     code: 'PROYECTO 02',
     title: 'Insignia by Pedralbes',
-    category: 'High-Rise Residencial',
-    location: 'Avenida Sarasota, Santo Domingo',
+    category: 'High-Rise Familiar · 3 y 4 Habitaciones',
+    location: 'Av. Sarasota esq. Calle Los Robles, La Julia, Santo Domingo',
     challenge:
-      'Desarrollar una propuesta familiar de lujo en una de las zonas más elevadas y exclusivas de la ciudad.',
+      'Desarrollar un refugio familiar en las alturas próximo a la Av. Winston Churchill que maximice las visuales al Mar Caribe y la luz natural.',
     solution:
-      'Torre de apartamentos de 3 habitaciones con arquitectura de Franc Ortega, diseñada para maximizar la luz natural y las vistas al mar Caribe.',
-    photo: HERO_PHOTO,
-    cropClass: 'crop-structure',
-    frameLabel: 'ESTRUCTURA HIGH-RISE · AVENIDA SARASOTA, LA JULIA',
+      'Torre residencial contemporánea diseñada por el Arq. Franc Ortega con unidades exclusivas de 3 y 4 habitaciones y terrazas panorámicas hacia el mar y la ciudad.',
+    photo: './media/web_4.jpg',
+    gallery: ['./media/web_4.jpg', './media/web_11.jpg'],
+    frameLabel: 'DISEÑO ARQ. FRANC ORTEGA · AVENIDA SARASOTA, LA JULIA',
   },
   {
     code: 'PROYECTO 03',
     title: 'Cassa Juanillo',
-    category: 'Residencial de Lujo',
-    location: 'Cap Cana, República Dominicana',
+    category: 'Ultra Lujo · 87 Residencias',
+    location: 'Playa Juanillo, Cap Cana',
     challenge:
-      'Construir un refugio rodeado de naturaleza y cercanía al mar en el destino más exclusivo del Caribe.',
+      'Construir una propuesta residencial de ultra lujo a pasos de Playa Juanillo dentro del destino turístico más importante de República Dominicana.',
     solution:
-      'Espacios pensados para el disfrute diario, con un diseño que respeta el entorno natural y ofrece una experiencia de vida premium.',
-    photo: HERO_PHOTO,
-    cropClass: 'crop-timber',
-    frameLabel: 'REVESTIMIENTOS EN MADERA & DETALLE ARQUITECTÓNICO · CAP CANA',
+      'Conjunto de 87 residencias diseñado por el Arq. Franc Ortega con espejos de agua, piscinas tipo resort y una integración orgánica con el paisaje costero de Cap Cana.',
+    photo: './media/web_7.jpg',
+    gallery: ['./media/web_7.jpg', './media/web_14.jpg'],
+    frameLabel: '87 APARTAMENTOS DE LUJO · PLAYA JUANILLO, CAP CANA',
+  },
+  {
+    code: 'PROYECTO 04',
+    title: 'PARC 131 by Pedralbes',
+    category: 'Vanguardia Urbana · 2 y 3 Dormitorios',
+    location: 'Av. Pedro Henríquez Ureña No. 131, La Esperilla, Santo Domingo',
+    challenge:
+      'Articular un nuevo concepto de vivienda en las alturas de Santo Domingo donde el Parque Iberoamericano y el mar sean parte de la vida diaria.',
+    solution:
+      'Torre residencial con terrazas verdes en movimiento, orientación privilegiada y vistas directas al Parque Iberoamericano y al horizonte del Mar Caribe.',
+    photo: './media/web_5.jpg',
+    gallery: ['./media/web_5.jpg', './media/web_12.jpg'],
+    frameLabel: 'FRENTE AL PARQUE IBEROAMERICANO · LA ESPERILLA, SANTO DOMINGO',
+  },
+  {
+    code: 'PROYECTO 05',
+    title: 'Canvas by Pedralbes',
+    category: 'Refugio Urbano con Parque Central',
+    location: 'Calle Paseo del Este, Arroyo Hondo Viejo, Santo Domingo',
+    challenge:
+      'Concebir un oasis familiar dentro de la ciudad donde la naturaleza y la recreación al aire libre sean el corazón del proyecto.',
+    solution:
+      'Desarrollo residencial articulado alrededor de un parque central privado diseñado para ejercitarse, caminar y disfrutar de experiencias sensoriales en familia.',
+    photo: './media/web_6.jpg',
+    gallery: ['./media/web_6.jpg', './media/web_13.jpg'],
+    frameLabel: 'PARQUE CENTRAL PRIVADO · ARROYO HONDO VIEJO, SANTO DOMINGO',
+  },
+  {
+    code: 'PROYECTO 06',
+    title: 'Mistral by Pedralbes',
+    category: 'Torre sobre Farallón · Vistas Perpetuas',
+    location: 'Av. Bolívar esq. Amada Nivar de Pittaluga, La Julia, Santo Domingo',
+    challenge:
+      'Garantizar vistas ininterrumpidas y perpetuas al Mar Caribe y a la ciudad a una esquina de la Av. Abraham Lincoln.',
+    solution:
+      'Torre emplazada estratégicamente sobre el farallón de La Julia con conectividad inmediata a Downtown Santo Domingo y visuales que nunca podrán ser obstruidas.',
+    photo: './media/web_8.jpg',
+    gallery: ['./media/web_8.jpg', './media/web_15.jpg'],
+    frameLabel: 'FARALLÓN DE LA JULIA · AVENIDA BOLÍVAR, SANTO DOMINGO',
+  },
+  {
+    code: 'PROYECTO 07',
+    title: 'Legado Entregado · Cezanne, Gazcue & Serie Onix',
+    category: 'Obras Terminadas y 100% Vendidas',
+    location: 'Gazcue, Piantini y Arroyo Hondo, Santo Domingo',
+    challenge:
+      'Consolidar un historial comprobable de entregas puntuales, solidez estructural y alta plusvalía para los propietarios.',
+    solution:
+      'Más de 18 desarrollos entregados con éxito, incluyendo Torre Cezanne Gazcue, Torre Pedralbes Gazcue, Serie Residencial Onix (I al XVIII), Novoparc y Marina Colonial.',
+    photo: './media/web_9.jpg',
+    gallery: ['./media/web_9.jpg', './media/web_1.jpg', './media/web_18.jpg'],
+    frameLabel: 'TRAYECTORIA COMPROBADA · SANTO DOMINGO',
   },
 ];
 
 const SERVICE = {
   number: '01',
-  title: 'Construcción y Ejecución',
+  title: 'Ingeniería, Promoción y Ejecución Constructiva',
   slug: 'construccion-y-ejecucion',
   description:
-    'Ejecución de obras civiles con un enfoque riguroso en la técnica, la seguridad y el detalle constructivo, desde los cimientos hasta los acabados finales.',
+    'Grupo Pedralbes integra promoción inmobiliaria, diseño arquitectónico e ingeniería civil, sanitaria y vial bajo un control riguroso de costos, tiempos de ejecución y garantía fiduciaria.',
   challenge:
-    'Mucho de lo que hace valioso un edificio queda detrás de sus paredes: en las decisiones técnicas y el oficio de quienes construyen.',
+    'Mucho de lo que hace valioso un edificio queda detrás de sus paredes: en las decisiones técnicas, la estructura y el oficio de quienes construyen.',
   features: [
     {
       num: '01',
-      title: 'Precisión Técnica',
-      desc: 'Cuidado exhaustivo en la elección de materiales y procesos de ingeniería.',
-      materialNote: 'Hormigón visto · Piedra coralina · Revestimientos técnicos',
-      cropClass: 'crop-structure',
+      title: 'Arquitectura de Autor & Diseño Estructural',
+      desc: 'Colaboración con firmas líderes como el Arq. Franc Ortega para lograr fachadas atemporales, ventilación cruzada y vistas francas al mar.',
+      materialNote: 'Hormigón arquitectónico · Cristal laminado · Terrazas panorámicas',
+      photo: './media/web_11.jpg',
     },
     {
       num: '02',
-      title: 'Seguridad en Obra',
-      desc: 'Protocolos estrictos de prevención y uso de equipos de protección.',
-      materialNote: 'Estándares rigurosos de supervisión y prevención en sitio',
-      cropClass: 'crop-helmet',
+      title: 'Rigor en Obra y Seguridad Industrial',
+      desc: 'Supervisión técnica continua en sitio, control de calidad de materiales certificados y protocolos estrictos de seguridad en cada etapa constructiva.',
+      materialNote: 'Ingeniería civil y sanitaria · Control de calidad en sitio',
+      photo: './media/post_7.jpg',
     },
     {
       num: '03',
-      title: 'Supervisión de Detalles',
-      desc: 'Revisión constante de acabados para asegurar la calidad Pedralbes.',
-      materialNote: 'Madera · Terminaciones arquitectónicas de alta gama',
-      cropClass: 'crop-timber',
+      title: 'Amenidades tipo Resort & Entrega Post-Venta',
+      desc: 'Áreas sociales de gran escala, clubes de playa, parques privados y acompañamiento dedicado al propietario desde la preventa hasta la entrega de llaves.',
+      materialNote: 'Terminaciones de primera · Plataforma SOUL · Garantía Pedralbes',
+      photo: './media/web_20.jpg',
     },
   ],
 };
@@ -89,39 +168,41 @@ const SERVICE = {
 const PROCESS_STEPS = [
   {
     step: '01',
-    title: 'Planificación y Criterio',
-    desc: 'Selección de materiales e intención arquitectónica desde el primer plano.',
+    title: 'Conceptualización & Fideicomiso',
+    desc: 'Selección de solares prime en Santo Domingo, Juan Dolio y Cap Cana con estructuración fiduciaria para proteger tu inversión.',
   },
   {
     step: '02',
-    title: 'Ejecución y Seguridad',
-    desc: 'Construcción rigurosa con supervisión constante en cada etapa de la obra.',
+    title: 'Ingeniería & Ejecución Rigurosa',
+    desc: 'Construcción con tecnología avanzada, cumplimiento estricto de cronogramas y supervisión continua de acabados.',
   },
   {
     step: '03',
-    title: 'Entrega y Estilo de Vida',
-    desc: 'Traspaso de la propiedad y activación de la comunidad a través de SOUL.',
+    title: 'Entrega & Comunidad SOUL',
+    desc: 'Acompañamiento post-venta personalizado y entrega de propiedades de alta plusvalía listas para habitar o rentar.',
   },
 ];
 
 const FAQS = [
   {
-    q: '¿Qué beneficios tiene comprar en plano con Pedralbes?',
-    a: 'Permite obtener un mejor precio de entrada, mayor plusvalía al finalizar la obra y planes de pago personalizados durante la construcción.',
+    q: '¿Qué beneficios tiene comprar en plano con Constructora Pedralbes?',
+    a: 'Permite asegurar las mejores ubicaciones y vistas del proyecto a precios de introducción, logrando una alta plusvalía durante la construcción con planes de pago flexibles.',
   },
   {
-    q: '¿Sus proyectos cuentan con respaldo legal?',
-    a: 'Sí, todos nuestros proyectos se desarrollan bajo la figura del fideicomiso, lo que garantiza que los fondos se utilicen exclusivamente para la ejecución de la obra.',
+    q: '¿Sus proyectos cuentan con respaldo de fideicomiso?',
+    a: 'Sí. Nuestros desarrollos cuentan con respaldo fiduciario, garantizando la administración transparente de los recursos destinados a la ejecución de cada obra.',
   },
   {
-    q: '¿Dónde están ubicados sus proyectos actuales?',
-    a: 'Contamos con desarrollos activos en Santo Domingo (La Julia), Juan Dolio y Cap Cana.',
+    q: '¿Dónde están ubicadas las oficinas corporativas de Pedralbes?',
+    a: 'Nuestra sede principal está en la Av. Winston Churchill #95, esq. Gustavo Mejía Ricart, Torre Empresarial BlueMall Piso 21 (Locales P21-03 y P21-04), Ensanche Piantini, Santo Domingo.',
   },
 ];
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const [projectPhotoIndex, setProjectPhotoIndex] = useState({});
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
@@ -133,40 +214,51 @@ export default function App() {
   });
 
   const activeFeature = SERVICE.features[activeFeatureIndex] || SERVICE.features[0];
+  const currentHero = HERO_SLIDES[activeHeroSlide] || HERO_SLIDES[0];
 
   return (
     <div className="site-wrapper">
       {/* NAVBAR FIJO */}
       <header className="site-navbar">
         <div className="arch-container navbar-inner">
-          <a href="#portada" className="brand-mark">
-            <span className="brand-name">Constructora Pedralbes</span>
-            <span className="brand-sub">Desarrollo Inmobiliario &amp; Construcción</span>
+          <a href="#portada" className="brand-mark" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <img
+              src="./media/logo_web.png"
+              alt="Constructora Pedralbes"
+              style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <div>
+              <span className="brand-name">Constructora Pedralbes</span>
+              <span className="brand-sub">Desarrollo Inmobiliario &amp; Construcción</span>
+            </div>
           </a>
 
           <nav className="nav-links" aria-label="Navegación principal">
             <a href="#estudio" className="nav-link">
-              El Estudio
+              El Grupo
             </a>
             <a href="#obras" className="nav-link">
-              Obras Destacadas
+              Proyectos ({PROJECTS.length})
             </a>
             <a href="#construccion" className="nav-link">
-              Ejecución Técnica
+              Ingeniería &amp; Obra
             </a>
             <a href="#proceso" className="nav-link">
-              Fideicomiso &amp; Proceso
+              Fideicomiso &amp; Contacto
             </a>
           </nav>
 
           <div className="nav-cta-desktop">
             <a
-              href={INSTAGRAM_URL}
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
             >
-              <span>Consultar en Instagram</span>
+              <span>Agendar con Ventas</span>
               <ArrowUpRight size={15} />
             </a>
           </div>
@@ -195,37 +287,37 @@ export default function App() {
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                El Estudio
+                El Grupo
               </a>
               <a
                 href="#obras"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Obras Destacadas
+                Proyectos ({PROJECTS.length})
               </a>
               <a
                 href="#construccion"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Ejecución Técnica
+                Ingeniería &amp; Obra
               </a>
               <a
                 href="#proceso"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Fideicomiso &amp; Proceso
+                Fideicomiso &amp; Contacto
               </a>
               <a
-                href={INSTAGRAM_URL}
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
                 style={{ width: 'fit-content' }}
               >
-                <span>Instagram Oficial @pedralbesrd</span>
+                <span>WhatsApp Ventas · (809) 441-0033</span>
                 <ArrowUpRight size={15} />
               </a>
             </motion.div>
@@ -246,22 +338,22 @@ export default function App() {
                 CREAMOS EL FUTURO QUE <em>tú vives</em>
               </h1>
               <p className="hero-lead">
-                Desarrollamos proyectos inmobiliarios de alto nivel en Santo Domingo,
-                Juan Dolio y Cap Cana, respaldados por la excelencia constructiva y el
-                modelo de fideicomiso.
+                Promotora y constructora líder de torres residenciales high-rise y
+                complejos frente al mar en Santo Domingo, Juan Dolio y Cap Cana con
+                respaldo fiduciario.
               </p>
               <div className="hero-actions">
                 <a
-                  href={INSTAGRAM_URL}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  <span>Contactar a @pedralbesrd</span>
+                  <span>Conversar con Ventas</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a href="#obras" className="btn-outline">
-                  <span>Ver Proyectos Activos</span>
+                  <span>Explorar 7 Desarrollos</span>
                 </a>
               </div>
             </motion.div>
@@ -274,14 +366,42 @@ export default function App() {
             >
               <div className="hero-frame">
                 <img
-                  src={HERO_PHOTO}
-                  alt="Constructora Pedralbes — Materiales, estructura en hormigón visto, madera y seguridad en obra"
+                  src={currentHero.photo}
+                  alt={currentHero.project}
                   className="crop-full"
                 />
               </div>
               <div className="hero-frame-caption mono-coord">
-                <span>MUESTRARIO CONSTRUCTIVO &amp; OBRA</span>
-                <span>SANTO DOMINGO · JUAN DOLIO · CAP CANA</span>
+                <span>{currentHero.project}</span>
+                <span>{currentHero.meta}</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+                {HERO_SLIDES.map((s, idx) => (
+                  <button
+                    key={s.project}
+                    type="button"
+                    onClick={() => setActiveHeroSlide(idx)}
+                    style={{
+                      padding: 0,
+                      border:
+                        activeHeroSlide === idx
+                          ? '2px solid var(--accent)'
+                          : '1px solid var(--hairline-light)',
+                      height: '54px',
+                      overflow: 'hidden',
+                      cursor: 'pointer',
+                      opacity: activeHeroSlide === idx ? 1 : 0.65,
+                      transition: 'all 0.2s ease',
+                    }}
+                    title={s.project}
+                  >
+                    <img
+                      src={s.photo}
+                      alt={s.project}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  </button>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -289,27 +409,27 @@ export default function App() {
           <div className="hero-datasheet">
             <div className="arch-container datasheet-grid">
               <div className="datasheet-cell">
-                <span className="datasheet-label">01 / FIRMA</span>
+                <span className="datasheet-label">01 / SEDE CORPORATIVA</span>
                 <span className="datasheet-value">
-                  Constructora Pedralbes · Dirección de Proyectos
+                  Torre Empresarial BlueMall Piso 21 · Piantini, Santo Domingo
                 </span>
               </div>
               <div className="datasheet-cell">
-                <span className="datasheet-label">02 / SECTORES REALES</span>
+                <span className="datasheet-label">02 / DESTINOS ACTIVOS</span>
                 <span className="datasheet-value">
-                  Santo Domingo · Juan Dolio · Cap Cana · La Julia · Madrid
+                  La Julia · La Esperilla · Arroyo Hondo · Juan Dolio · Cap Cana
                 </span>
               </div>
               <div className="datasheet-cell">
-                <span className="datasheet-label">03 / MATERIALIDAD</span>
+                <span className="datasheet-label">03 / LÍNEA DIRECTA VENTAS</span>
                 <span className="datasheet-value">
-                  Hormigón visto · Madera · Piedra coralina · Revestimientos técnicos
+                  +1 (809) 688-9945 · WhatsApp (809) 441-0033
                 </span>
               </div>
               <div className="datasheet-cell">
                 <span className="datasheet-label">04 / GARANTÍA PATRIMONIAL</span>
                 <span className="datasheet-value">
-                  Ejecución bajo Modelo de Fideicomiso &amp; Plataforma SOUL
+                  Proyectos con Fideicomiso &amp; Más de 18 Torres Entregadas
                 </span>
               </div>
             </div>
@@ -321,13 +441,13 @@ export default function App() {
           <div className="arch-container manifesto-layout">
             <div className="manifesto-sidebar">
               <div className="mono-coord" style={{ color: 'var(--gold-accent)' }}>
-                EL ARTE DE LA CONSTRUCCIÓN
+                GRUPO PEDRALBES · TRAYECTORIA INSTITUCIONAL
               </div>
               <div className="manifesto-visual-box">
                 <img
-                  src={HERO_PHOTO}
-                  alt="Detalle de seguridad e ingeniería en obra Pedralbes"
-                  className="crop-helmet"
+                  src="./media/web_16.jpg"
+                  alt="Perspectiva arquitectónica de Constructora Pedralbes"
+                  className="crop-full"
                   loading="lazy"
                 />
               </div>
@@ -338,8 +458,8 @@ export default function App() {
                   lineHeight: 1.6,
                 }}
               >
-                Dirección de Proyectos · Constructora Pedralbes. Creamos futuro, tú lo
-                vives.
+                Torre Empresarial BlueMall Piso 21, Locales P21-03 y P21-04 · Av. Winston
+                Churchill #95, Santo Domingo.
               </p>
             </div>
 
@@ -352,20 +472,18 @@ export default function App() {
 
               <div className="manifesto-narratives">
                 <p className="manifesto-text">
-                  Constructora Pedralbes es una firma líder en el desarrollo inmobiliario
-                  de la República Dominicana, con una presencia consolidada en Santo
-                  Domingo, Juan Dolio y Cap Cana. Se especializan en la creación de
-                  proyectos residenciales de alta gama, desde torres familiares en
-                  sectores exclusivos como La Julia hasta complejos de playa que integran
-                  el entorno natural con una arquitectura contemporánea.
+                  Grupo Pedralbes se inicia como un conjunto de empresas
+                  constructoras-promotoras de proyectos inmobiliarios, además de brindar
+                  servicios de ingeniería y diseño de proyectos civiles, sanitarios y
+                  viales. Nuestras empresas poseen los recursos y la tecnología que
+                  garantizan un manejo apropiado de los costos, efectividad en los tiempos
+                  de ejecución y calidad superior en cada obra.
                 </p>
                 <p className="manifesto-text">
-                  Su enfoque se centra en &lsquo;El Arte de la Construcción&rsquo;,
-                  priorizando la precisión técnica, la elección de materiales de alta
-                  calidad y el cumplimiento de estándares de seguridad. A través de su
-                  plataforma SOUL, exploran la dimensión humana de sus obras, integrando
-                  diseño, bienestar y comunidad en cada espacio que ejecutan bajo el
-                  modelo de fideicomiso.
+                  Desde torres familiares high-rise en sectores exclusivos como La Julia y
+                  La Esperilla hasta complejos frente al mar en Juan Dolio y Cap Cana,
+                  cada desarrollo se concibe junto a firmas de arquitectura de primer
+                  nivel como el Arq. Franc Ortega y se ejecuta bajo respaldo fiduciario.
                 </p>
               </div>
 
@@ -386,7 +504,7 @@ export default function App() {
           <div className="arch-container">
             <div className="section-header-split">
               <div>
-                <h2 className="section-title">Desarrollos &amp; Obras Destacadas</h2>
+                <h2 className="section-title">Portafolio de Proyectos</h2>
               </div>
 
               <div className="project-filter-bar" role="tablist" aria-label="Filtrar por ubicación">
@@ -406,73 +524,117 @@ export default function App() {
             </div>
 
             <div className="projects-stack">
-              {filteredProjects.map((project, idx) => (
-                <motion.article
-                  key={project.code}
-                  className={`project-row ${idx % 2 === 1 ? 'reverse' : ''}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="project-media-wrap">
-                    <img
-                      src={project.photo}
-                      alt={`${project.title} — ${project.location}`}
-                      className={project.cropClass}
-                      loading="lazy"
-                    />
-                  </div>
+              {filteredProjects.map((project, idx) => {
+                const gallery = project.gallery || [project.photo];
+                const activeIdx = projectPhotoIndex[project.code] || 0;
+                const activePhoto = gallery[activeIdx] || project.photo;
 
-                  <div className="project-info-wrap">
-                    <div>
-                      <div className="project-meta-top mono-coord">
-                        <span>{project.code}</span>
-                        <span>{project.category}</span>
+                return (
+                  <motion.article
+                    key={project.code}
+                    className={`project-row ${idx % 2 === 1 ? 'reverse' : ''}`}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                      <div className="project-media-wrap">
+                        <img
+                          src={activePhoto}
+                          alt={`${project.title} — ${project.location}`}
+                          className="crop-full"
+                          loading="lazy"
+                        />
                       </div>
 
-                      <h3 className="project-title">{project.title}</h3>
-                      <div className="project-location">{project.location}</div>
-
-                      <div className="project-spec-list">
-                        <div className="project-spec-item">
-                          <div className="project-spec-label">DESAFÍO ARQUITECTÓNICO</div>
-                          <p className="project-spec-desc">{project.challenge}</p>
+                      {gallery.length > 1 && (
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                          {gallery.map((gUrl, gIdx) => (
+                            <button
+                              key={gUrl}
+                              type="button"
+                              onClick={() =>
+                                setProjectPhotoIndex((prev) => ({
+                                  ...prev,
+                                  [project.code]: gIdx,
+                                }))
+                              }
+                              style={{
+                                width: '76px',
+                                height: '48px',
+                                padding: 0,
+                                border:
+                                  activeIdx === gIdx
+                                    ? '2px solid var(--accent)'
+                                    : '1px solid var(--hairline-light)',
+                                cursor: 'pointer',
+                                overflow: 'hidden',
+                                opacity: activeIdx === gIdx ? 1 : 0.65,
+                              }}
+                              aria-label={`Ver vista ${gIdx + 1} de ${project.title}`}
+                            >
+                              <img
+                                src={gUrl}
+                                alt=""
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                              />
+                            </button>
+                          ))}
                         </div>
-                        <div className="project-spec-item">
-                          <div className="project-spec-label">SOLUCIÓN EJECUTIVA</div>
-                          <p className="project-spec-desc">{project.solution}</p>
-                        </div>
-                      </div>
+                      )}
                     </div>
 
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        paddingTop: '1.25rem',
-                        borderTop: '1px solid var(--hairline-light)',
-                        gap: '1rem',
-                        flexWrap: 'wrap',
-                      }}
-                    >
-                      <span className="mono-coord" style={{ color: 'var(--text-muted)' }}>
-                        {project.frameLabel}
-                      </span>
-                      <a
-                        href={INSTAGRAM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-outline"
+                    <div className="project-info-wrap">
+                      <div>
+                        <div className="project-meta-top mono-coord">
+                          <span>{project.code}</span>
+                          <span>{project.category}</span>
+                        </div>
+
+                        <h3 className="project-title">{project.title}</h3>
+                        <div className="project-location">{project.location}</div>
+
+                        <div className="project-spec-list">
+                          <div className="project-spec-item">
+                            <div className="project-spec-label">CONCEPTO Y EMPLAZAMIENTO</div>
+                            <p className="project-spec-desc">{project.challenge}</p>
+                          </div>
+                          <div className="project-spec-item">
+                            <div className="project-spec-label">ARQUITECTURA Y PROGRAMA</div>
+                            <p className="project-spec-desc">{project.solution}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          paddingTop: '1.25rem',
+                          borderTop: '1px solid var(--hairline-light)',
+                          gap: '1rem',
+                          flexWrap: 'wrap',
+                        }}
                       >
-                        <span>Solicitar Disponibilidad</span>
-                        <ArrowUpRight size={15} />
-                      </a>
+                        <span className="mono-coord" style={{ color: 'var(--text-muted)' }}>
+                          {project.frameLabel}
+                        </span>
+                        <a
+                          href={`${WHATSAPP_URL}%20Me%20interesa%20${encodeURIComponent(project.title)}.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-outline"
+                        >
+                          <span>Solicitar Brochure y Precios</span>
+                          <ArrowUpRight size={15} />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </motion.article>
-              ))}
+                  </motion.article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -482,7 +644,7 @@ export default function App() {
           <div className="arch-container service-editorial-grid">
             <div className="service-sticky-panel">
               <div className="mono-coord" style={{ color: 'var(--accent)' }}>
-                {SERVICE.number} / ESPECIALIDAD CENTRAL
+                {SERVICE.number} / CAPACIDAD CONSTRUCTIVA
               </div>
               <h2 className="section-title">{SERVICE.title}</h2>
               <p
@@ -501,12 +663,12 @@ export default function App() {
 
               <div>
                 <a
-                  href={INSTAGRAM_URL}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
                 >
-                  <span>Conocer más en @pedralbesrd</span>
+                  <span>Agendar Cita en BlueMall Piso 21</span>
                   <ArrowUpRight size={16} />
                 </a>
               </div>
@@ -558,9 +720,9 @@ export default function App() {
               <div className="service-preview-stage">
                 <div className="service-preview-img">
                   <img
-                    src={HERO_PHOTO}
+                    src={activeFeature.photo}
                     alt={activeFeature.title}
-                    className={activeFeature.cropClass}
+                    className="crop-full"
                     loading="lazy"
                   />
                 </div>
@@ -569,7 +731,7 @@ export default function App() {
                     className="mono-coord"
                     style={{ color: 'var(--accent)', marginBottom: '0.5rem' }}
                   >
-                    DETALLE TÉCNICO {activeFeature.num}
+                    ESTÁNDAR PEDRALBES {activeFeature.num}
                   </div>
                   <h3
                     style={{
@@ -602,7 +764,7 @@ export default function App() {
             <div className="section-header-split">
               <h2 className="section-title">Metodología &amp; Rigor Constructivo</h2>
               <span className="mono-coord" style={{ color: 'var(--text-muted)' }}>
-                MODELO DE FIDEICOMISO · PLATAFORMA SOUL
+                GARANTÍA FIDUCIARIA · ATENCIÓN AL PROPIETARIO
               </span>
             </div>
 
@@ -635,7 +797,7 @@ export default function App() {
                     marginBottom: '1.25rem',
                   }}
                 >
-                  Preguntas Frecuentes sobre Inversión en Plano
+                  Preguntas Frecuentes sobre Inversión Inmobiliaria
                 </h3>
                 <p
                   style={{
@@ -645,19 +807,24 @@ export default function App() {
                     marginBottom: '1.75rem',
                   }}
                 >
-                  Todos nuestros desarrollos en Santo Domingo, Juan Dolio y Cap Cana se
-                  ejecutan bajo estructura fiduciaria para garantizar transparencia y
-                  solidez patrimonial.
+                  Nuestro equipo comercial en Torre Empresarial BlueMall Piso 21 te
+                  acompaña en la selección de tu unidad en Santo Domingo, Juan Dolio o Cap
+                  Cana.
                 </p>
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline"
-                >
-                  <span>Escribir a Constructora Pedralbes</span>
-                  <ArrowUpRight size={15} />
-                </a>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline"
+                  >
+                    <span>WhatsApp (809) 441-0033</span>
+                    <ArrowUpRight size={15} />
+                  </a>
+                  <a href={PHONE_HREF} className="btn-outline">
+                    <span>Llamar +1 (809) 688-9945</span>
+                  </a>
+                </div>
               </div>
 
               <div className="faq-list">
@@ -704,44 +871,53 @@ export default function App() {
             <div>
               <h2 className="footer-headline">Creamos futuro, tú lo vives.</h2>
               <p className="footer-sub">
-                Conecta directamente con Dirección de Proyectos de Constructora Pedralbes
-                a través de nuestro canal oficial para conocer disponibilidad en Santo
-                Domingo, Juan Dolio y Cap Cana.
+                Visita nuestras oficinas en Torre Empresarial BlueMall Piso 21 o conversa
+                directamente con nuestro Departamento de Ventas para recibir disponibilidad
+                y planes de pago personalizados.
               </p>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', justifyContent: 'flex-start' }}>
               <a
-                href={INSTAGRAM_URL}
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-light"
               >
-                <span>Instagram Oficial @pedralbesrd</span>
+                <span>WhatsApp Ventas · (809) 441-0033</span>
                 <ArrowUpRight size={16} />
+              </a>
+              <a href={EMAIL_HREF} className="btn-outline" style={{ borderColor: 'rgba(245,241,232,0.3)', color: 'var(--text-light)' }}>
+                <span>info@pedralbes.com.do</span>
               </a>
             </div>
           </div>
 
           <div className="footer-meta-columns">
             <div>
-              <div className="footer-col-title">UBICACIONES &amp; SECTORES</div>
+              <div className="footer-col-title">SEDE CORPORATIVA &amp; CONTACTO</div>
               <ul className="footer-col-list">
-                <li>Santo Domingo · Avenida Sarasota, La Julia</li>
-                <li>Juan Dolio · República Dominicana</li>
-                <li>Cap Cana · República Dominicana</li>
-                <li>Madrid</li>
+                <li>Av. Winston Churchill #95, esq. Gustavo Mejía Ricart</li>
+                <li>Torre Empresarial BlueMall Piso 21, Locales P21-03 y P21-04</li>
+                <li>Oficina: +1 (809) 688-9945 · Ventas: (809) 441-0033 / (849) 410-4691</li>
+                <li>info@pedralbes.com.do · servicioalcliente@pedralbes.com.do</li>
               </ul>
             </div>
 
             <div>
-              <div className="footer-col-title">OBRAS REPRESENTATIVAS</div>
+              <div className="footer-col-title">PROYECTOS EN VENTA</div>
               <ul className="footer-col-list">
                 <li>
-                  <a href="#obras">Oceanic · Juan Dolio</a>
+                  <a href="#obras">Oceanic by Pedralbes · Juan Dolio</a>
                 </li>
                 <li>
-                  <a href="#obras">Insignia by Pedralbes · Santo Domingo</a>
+                  <a href="#obras">Insignia &amp; Mistral · La Julia, Santo Domingo</a>
+                </li>
+                <li>
+                  <a href="#obras">PARC 131 &amp; Icono · La Esperilla, Santo Domingo</a>
+                </li>
+                <li>
+                  <a href="#obras">Canvas · Arroyo Hondo Viejo</a>
                 </li>
                 <li>
                   <a href="#obras">Cassa Juanillo · Cap Cana</a>
@@ -750,19 +926,27 @@ export default function App() {
             </div>
 
             <div>
-              <div className="footer-col-title">CANAL OFICIAL VERIFICADO</div>
+              <div className="footer-col-title">CANALES OFICIALES</div>
               <ul className="footer-col-list">
+                <li>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp Directo: +1 (809) 441-0033
+                  </a>
+                </li>
                 <li>
                   <a
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    instagram.com/pedralbesrd
+                    Instagram: @pedralbesrd
                   </a>
                 </li>
-                <li>Dirección de Proyectos · Constructora Pedralbes</li>
-                <li>Desarrollo Inmobiliario y Construcción</li>
+                <li>Constructora Pedralbes · R.D.</li>
               </ul>
             </div>
           </div>
@@ -771,17 +955,17 @@ export default function App() {
 
           <div className="footer-bottom-bar">
             <span>
-              © {new Date().getFullYear()} Constructora Pedralbes. Desarrollo Inmobiliario
-              y Construcción.
+              © {new Date().getFullYear()} Constructora Pedralbes. Todos los derechos
+              reservados.
             </span>
             <a
-              href={INSTAGRAM_URL}
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mono-coord"
               style={{ color: 'var(--gold-accent)' }}
             >
-              @PEDRALBESRD ↗
+              VENTAS DIRECTAS · (809) 441-0033 ↗
             </a>
           </div>
         </div>

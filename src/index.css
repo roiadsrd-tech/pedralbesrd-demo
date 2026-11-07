@@ -382,34 +382,10 @@ img {
   color: var(--text-dark);
 }
 
-/* Utilidades de Encuadre sobre Foto Real (post_7.jpg) */
+/* Encuadre Limpio para Fotografías Arquitectónicas Reales */
 .crop-full {
   object-fit: cover;
-  object-position: 50% 50%;
-}
-
-.crop-structure {
-  object-fit: cover;
-  object-position: 16% 88%;
-  transform: scale(1.65);
-}
-
-.crop-timber {
-  object-fit: cover;
-  object-position: 50% 72%;
-  transform: scale(1.55);
-}
-
-.crop-stone {
-  object-fit: cover;
-  object-position: 86% 72%;
-  transform: scale(1.55);
-}
-
-.crop-helmet {
-  object-fit: cover;
-  object-position: 68% 18%;
-  transform: scale(1.45);
+  object-position: center center;
 }
 
 /* SECCIÓN 2: MANIFIESTO DEL ESTUDIO & CIFRAS VERIFICADAS (FONDO BASÁLTICO OSCURO) */
